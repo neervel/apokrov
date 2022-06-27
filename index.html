@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/vue@3"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div v-if="currentType === 'question'" class="question">
+            <p class="text">{{ currentQuestion.text }}</p>
+            <button @click="nextStep('yes')">Да</button>
+            <button @click="nextStep('no')">Нет</button>
+        </div>
+        <div v-else class="ending">
+            <p class="text">{{ currentEnding.text }}</p>
+        </div>
+    </div>
+
+    <script>
+        const {
+            createApp
+        } = Vue
+
+        createApp({
+            data() {
+                return {
+                    message: 'Hello Vue!',
+                    activeStepId: 0,
+                    currentType: 'question',
+                    activeEnding: 0,
+                    questions: [{
+                        id: 0,
+                        text: 'Есть ли у вас актуальная проблема, которая вас беспокоит, и Вы испытываете трудности с ее решением?',
+                        no: 'e0',
+                        yes: 'q1',
+                    }, {
+                        id: 1,
+                        text: 'Ваша проблема связана с детьми (ребенком)?',
+                        no: 'q2',
+                        yes: 'q3',
+                    }, {
+                        id: 2,
+                        text: 'Cвязана ли Ваша проблема со стрессом из-за тяжелого события?',
+                        no: 'e0',
+                        yes: 'e1',
+                    }, {
+                        id: 3,
+                        text: 'Связана ли Ваша проблема с отношениями детей (ребенка) со вторым родителем или родственником?',
+                        no: 'q4',
+                        yes: 'e1',
+                    }, {
+                        id: 4,
+                        text: 'Связана ли ваша проблема с поведением, состоянием или учебой ребенка?',
+                        no: 'e3',
+                        yes: 'e2',
+                    }],
+                    endings: [{
+                        id: 0,
+                        text: 'Какие у Вас есть к нам вопросы или пожелания? Напишите нам или оставьте Ваши контакты - мы рады будем Вам помочь!',
+                    }, {
+                        id: 1,
+                        text: `Если Вы пострадали из-за нарушения Ваших прав, наши 	специалисты могут провести экспертизу морального вреда, юристы помогут взыскать эти деньги. При проведении обследования специалист даст подробные рекомендации, предложит поддержку наших психологов при необходимости. Условия проведения экспертизы (кликабельно)Также наши специалисты (юристы и психологи) готовы проконсультировать Вас и помочь. Мы выигрываем суды, ведем психотерапию, даем справки, работаем официально и качественно. Подробнее (кликабельно на страничку на сайте «консультации»)`,
+                    }, {
+                        id: 2,
+                        text: '',
+                    }, {
+                        id: 3,
+                        text: 'наши специалисты могут провести экспертизу привязанности ребенка, влияния на него этих отношений и уровня стресса ребенка. При проведении обследования специалист даст подробные рекомендации. Работа возможна онлайн.Условия проведения экспертизы (кликабельно)Также наши специалисты (детские и семейные психологи) готовы проконсультировать Вас и Вашего ребенка. Подробнее (кликабельно на страничку на сайте «консультации»)',
+                    }, ]
+                }
+            },
+
+            computed: {
+                test() {
+                    return 'aaaa';
+                },
+
+                currentQuestion() {
+                    return this.questions[this.activeStepId];
+                },
+
+                currentEnding() {
+                    return this.endings[this.activeEnding];
+                },
+            },
+
+            methods: {
+                nextStep(answer) {
+                    const yes = this.currentQuestion.yes;
+                    const no = this.currentQuestion.no;
+                    if (answer === 'yes') {
+                        if (yes[0] === 'q') {
+                            this.activeStepId = yes[1];
+                        } else {
+                            this.activeEnding = yes[1];
+                            this.currentType = 'ending';
+                        }
+                    } else {
+                        if (no[0] === 'q') {
+                            this.activeStepId = no[1];
+                        } else {
+                            this.activeEnding = no[1];
+                            this.currentType = 'ending';
+                        }
+                    }
+                },
+            },
+
+
+        }).mount('#app')
+    </script>
+</body>
+
+</html>
