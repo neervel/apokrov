@@ -7,18 +7,91 @@
 }
 
 .app {
-  margin-top: 50px;
+  background-image: linear-gradient(290deg, #c7c7cf 27%, #4f83ad 53%);
 }
 
 .container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding-top: 50px;
   width: 1200px;
+  height: 550px;
   margin: 0 auto;
   max-width: 90%;
+  background-image: url(https://apokrov.ru/wp-content/uploads/2019/09/pokrovskaya_june_lending_960x503-removebg-2.png);
+  background-position: bottom right;
+  background-repeat: no-repeat;
+  background-size: 65% auto;
+}
+
+@media (max-width: 768px) {
+  .container {
+    background-image: none;
+  }
+}
+
+.title {
+  width: 100%;
+  margin-bottom: 100px;
+  color: #fff;
+  font-size: 35px;
+}
+
+@media (max-width: 1080px) {
+  .title {
+    margin-bottom: 60px;
+  }
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    margin-bottom: 50px;
+  }
+}
+
+.question,
+.ending {
+  width: 100%;
 }
 
 .text {
-  text-align: center;
+  max-width: 50%;
   margin-bottom: 20px;
+  color: #fff;
+  font-size: 28px;
+}
+
+@media (max-width: 768px) {
+  .text {
+    font-size: 18px;
+    max-width: 80%;
+  }
+}
+
+.ending .text {
+  font-size: 18px;
+  max-width: 70%;
+}
+
+@media (max-width: 768px) {
+  .ending .text {
+    font-size: 16px;
+    max-width: 90%;
+  }
 }
 
 .buttons {
@@ -28,23 +101,7 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
   margin: 0 auto;
-}
-
-.buttons button {
-  display: block;
-  margin-right: 10px;
-  padding: 5px 15px;
-  font-size: 18px;
-  background-color: transparent;
-  border: 1px solid gray;
-  border-radius: 5px;
-  -webkit-transition: .2s;
-  transition: .2s;
-  cursor: pointer;
 }
 
 .buttons button:active {
@@ -54,4 +111,38 @@
 
 .buttons button:last-child {
   margin-right: 0;
+}
+
+.button {
+  display: block;
+  margin-right: 10px;
+  padding: 5px 15px;
+  font-size: 18px;
+  background-color: transparent;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  -webkit-transition: .2s;
+  transition: .2s;
+  cursor: pointer;
+  font-size: 15px;
+  padding: 12px 24px;
+  border-radius: 3px;
+  color: #fff;
+  transition: .2s;
+}
+
+.button:hover {
+  background-color: #fff;
+  color: #54595f;
+}
+
+a {
+  color: #fff;
+}
+
+a.button {
+  text-decoration: none;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
 }
